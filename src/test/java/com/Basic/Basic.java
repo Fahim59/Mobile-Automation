@@ -13,7 +13,7 @@ import java.net.MalformedURLException;
 import java.time.Duration;
 
 public class Basic extends BaseClass{
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) throws MalformedURLException, InterruptedException {
         Capabilities();
         //Test();
         //UIAutomator();
@@ -49,11 +49,11 @@ public class Basic extends BaseClass{
         System.out.println(driver.findElementsByAndroidUIAutomator("new UiSelector().clickable(true)").size());
     }
 
-    public static void Gestures(){
+    public static void Gestures() throws InterruptedException {
         FindElementByUIAutomator_Click("text","Views");
 
         //======================== Tap and Hold ========================//
-        //==============================================================//
+        //=============================================================//
 //        TapElementByXpath("//android.widget.TextView[@text = 'Expandable Lists']");
 //        TapElementByXpath("//android.widget.TextView[@text = '1. Custom Adapter']");
 //
@@ -62,12 +62,20 @@ public class Basic extends BaseClass{
 //        System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text = 'Sample menu']")).isDisplayed());
 
         //======================== Swipe ========================//
-        //==============================================================//
-        FindElementByUIAutomator_Click("text","Date Widgets");
-        FindElementByUIAutomator_Click("text","2. Inline");
+        //======================================================//
+//        FindElementByUIAutomator_Click("text","Date Widgets");
+//        FindElementByUIAutomator_Click("text","2. Inline");
+//
+//        FindElementByXpath_Click("//*[@content-desc='9']");
+//
+//        SwipeElementByXpath("//*[@content-desc='15']","//*[@content-desc='45']");
 
-        FindElementByXpath_Click("//*[@content-desc='9']");
+        //======================== Scroll ========================//
+        //=======================================================//
+//        Scroll_Down_Text_FindElement("Layouts");
+//        FindElementByUIAutomator_Click("text","Layouts");
 
-        SwipeElementByXpath("//*[@content-desc='15']","//*[@content-desc='45']");
+        //======================== Drag and Drop =================//
+        //=======================================================//
     }
 }

@@ -9,6 +9,7 @@ import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import org.aspectj.weaver.ast.And;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -21,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseClass {
 
-    public static void main(String[] args) throws MalformedURLException {}
+    public static void main(String[] args) throws MalformedURLException,InterruptedException {}
 
     public static AndroidDriver<AndroidElement> driver;
     public static WebDriver driverW;
@@ -90,4 +91,23 @@ public class BaseClass {
                         .element(from)).withDuration(Duration.ofSeconds(1))).moveTo(ElementOption.element(to))
                 .release().perform();
     }
+
+    //=====================================================================================================//
+    public static void Scroll_Down_Xpath_FindElement(String xpath) throws InterruptedException {
+        SmallWait();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement element = driver.findElement(By.xpath(xpath));
+        js.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
+    public static void Scroll_Down() throws InterruptedException {
+        SmallWait();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,100)", "");
+    }
+
+    public static void Scroll_Down_Text_FindElement(String text) {
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+text+"\"));");
+    }
+    //=====================================================================================================//
 }

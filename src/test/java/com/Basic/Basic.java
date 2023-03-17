@@ -2,6 +2,9 @@ package com.Basic;
 
 import com.Base.BaseClass;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.ElementOption;
@@ -17,13 +20,13 @@ import static io.appium.java_client.touch.offset.ElementOption.element;
 public class Basic extends BaseClass{
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         Capabilities();
-        //Test();
+        //Find_Element();
         //UIAutomator();
         //CheckClickableObjects();
         Gestures();
     }
 
-    public static void Test(){
+    public static void Find_Element(){
         //Xpath = //tagName[@attribute = 'value']
         //Duplicate_Value = (//tagName)[2]
 
@@ -79,8 +82,14 @@ public class Basic extends BaseClass{
 
         //======================== Drag and Drop =================//
         //=======================================================//
-        FindElementByUIAutomator_Click("text","Drag and Drop");
+//        FindElementByUIAutomator_Click("text","Drag and Drop");
+//        Drag_DropElementByXpath("(.//*[@class='android.view.View'])[1]","(.//*[@class='android.view.View'])[2]");
 
-        Drag_DropElementByXpath("(.//*[@class='android.view.View'])[1]","(.//*[@class='android.view.View'])[2]");
+        //======================== Miscelleanous  ================//
+        //=======================================================//
+        System.out.println(driver.currentActivity());
+        System.out.println(driver.getContext());
+        System.out.println(driver.getOrientation());
+        System.out.println(driver.isDeviceLocked());
     }
 }

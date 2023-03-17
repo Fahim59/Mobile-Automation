@@ -4,6 +4,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import org.aspectj.weaver.ast.And;
@@ -69,5 +70,13 @@ public class BaseClass {
 
         WebElement element = driver.findElement(By.xpath(xpath));
         tap.tap(new TapOptions().withElement(ElementOption.element(element))).perform();
+    }
+
+    public static void LongPressElementByXpath(String xpath){
+        TouchAction tap = new TouchAction<>(driver);
+
+        WebElement peopleName = driver.findElement(By.xpath(xpath));
+        tap.longPress(LongPressOptions.longPressOptions().withElement(ElementOption
+                .element(peopleName)).withDuration(Duration.ofSeconds(3))).release().perform();
     }
 }

@@ -49,19 +49,17 @@ public class Basic extends BaseClass{
     }
 
     public static void Gestures(){
-        //======================== Press and Hold ========================//
+        //======================== Tap and Hold ========================//
 
         FindElementByUIAutomator_Click("text","Views");
 
-        TouchAction tap = new TouchAction<>(driver);
-
-        WebElement expandList = driver.findElement(By.xpath("//android.widget.TextView[@text = 'Expandable Lists']"));
-        tap.tap(new TapOptions().withElement(ElementOption.element(expandList))).perform();
-
+        TapElementByXpath("//android.widget.TextView[@text = 'Expandable Lists']");
         TapElementByXpath("//android.widget.TextView[@text = '1. Custom Adapter']");
 
-        WebElement peopleName = driver.findElement(By.xpath("//android.widget.TextView[@text = 'People Names']"));
-        tap.longPress(LongPressOptions.longPressOptions().withElement(ElementOption
-                .element(peopleName)).withDuration(Duration.ofSeconds(2))).release().perform();
+        LongPressElementByXpath("//android.widget.TextView[@text = 'People Names']");
+
+        System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text = 'Sample menu']")).isDisplayed());
+
+        //======================== Swipe ========================//
     }
 }

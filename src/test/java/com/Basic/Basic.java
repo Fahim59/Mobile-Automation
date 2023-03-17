@@ -2,12 +2,14 @@ package com.Basic;
 
 import com.Base.BaseClass;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.net.MalformedURLException;
+import java.time.Duration;
 
 public class Basic extends BaseClass{
     public static void main(String[] args) throws MalformedURLException {
@@ -52,7 +54,14 @@ public class Basic extends BaseClass{
         FindElementByUIAutomator_Click("text","Views");
 
         TouchAction tap = new TouchAction<>(driver);
+
         WebElement expandList = driver.findElement(By.xpath("//android.widget.TextView[@text = 'Expandable Lists']"));
         tap.tap(new TapOptions().withElement(ElementOption.element(expandList))).perform();
+
+        TapElementByXpath("//android.widget.TextView[@text = '1. Custom Adapter']");
+
+        WebElement peopleName = driver.findElement(By.xpath("//android.widget.TextView[@text = 'People Names']"));
+        tap.longPress(LongPressOptions.longPressOptions().withElement(ElementOption
+                .element(peopleName)).withDuration(Duration.ofSeconds(2))).release().perform();
     }
 }

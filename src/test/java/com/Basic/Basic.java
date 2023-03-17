@@ -1,6 +1,11 @@
 package com.Basic;
 
 import com.Base.BaseClass;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.TapOptions;
+import io.appium.java_client.touch.offset.ElementOption;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import java.net.MalformedURLException;
 
@@ -9,7 +14,8 @@ public class Basic extends BaseClass{
         Capabilities();
         //Test();
         //UIAutomator();
-        CheckClickableObjects();
+        //CheckClickableObjects();
+        Gestures();
     }
 
     public static void Test(){
@@ -44,7 +50,9 @@ public class Basic extends BaseClass{
         //======================== Press and Hold ========================//
 
         FindElementByUIAutomator_Click("text","Views");
-        FindElementByUIAutomator_Click("text","Expandable Lists");
-        FindElementByUIAutomator_Click("text","1. Custom Adapter");
+
+        TouchAction tap = new TouchAction<>(driver);
+        WebElement expandList = driver.findElement(By.xpath("//android.widget.TextView[@text = 'Expandable Lists']"));
+        tap.tap(new TapOptions().withElement(ElementOption.element(expandList))).perform();
     }
 }

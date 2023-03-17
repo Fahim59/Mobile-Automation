@@ -39,6 +39,7 @@ public class BaseClass {
     public static void ImplicitWait() {driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);}
 
     //=====================================================================================================//
+    public static void FindElementByXpath(String xpath){driver.findElement(By.xpath(xpath));}
     public static void FindElementByXpath_Click(String xpath){driver.findElement(By.xpath(xpath)).click();}
     public static void FindElementByXpath_Details(String xpath, String details){
         AndroidElement element = driver.findElement(By.xpath(xpath));

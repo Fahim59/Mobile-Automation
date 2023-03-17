@@ -20,6 +20,8 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import static io.appium.java_client.touch.offset.ElementOption.element;
+
 public class BaseClass {
 
     public static void main(String[] args) throws MalformedURLException,InterruptedException {}
@@ -90,6 +92,15 @@ public class BaseClass {
         tap.longPress(LongPressOptions.longPressOptions().withElement(ElementOption
                         .element(from)).withDuration(Duration.ofSeconds(1))).moveTo(ElementOption.element(to))
                 .release().perform();
+    }
+
+    public static void Drag_DropElementByXpath(String fromXpath, String toXpath){
+        TouchAction tap = new TouchAction<>(driver);
+
+        WebElement from = driver.findElement(By.xpath(fromXpath));
+        WebElement to = driver.findElement(By.xpath(toXpath));
+
+        tap.longPress(element(from)).moveTo(element(to)).release().perform();
     }
 
     //=====================================================================================================//

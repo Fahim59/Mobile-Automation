@@ -12,6 +12,8 @@ import org.openqa.selenium.WebElement;
 import java.net.MalformedURLException;
 import java.time.Duration;
 
+import static io.appium.java_client.touch.offset.ElementOption.element;
+
 public class Basic extends BaseClass{
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         Capabilities();
@@ -77,5 +79,8 @@ public class Basic extends BaseClass{
 
         //======================== Drag and Drop =================//
         //=======================================================//
+        FindElementByUIAutomator_Click("text","Drag and Drop");
+
+        Drag_DropElementByXpath("(.//*[@class='android.view.View'])[1]","(.//*[@class='android.view.View'])[2]");
     }
 }

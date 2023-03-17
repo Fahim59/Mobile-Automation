@@ -5,6 +5,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.ElementOption;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -49,17 +50,24 @@ public class Basic extends BaseClass{
     }
 
     public static void Gestures(){
-        //======================== Tap and Hold ========================//
-
         FindElementByUIAutomator_Click("text","Views");
 
-        TapElementByXpath("//android.widget.TextView[@text = 'Expandable Lists']");
-        TapElementByXpath("//android.widget.TextView[@text = '1. Custom Adapter']");
-
-        LongPressElementByXpath("//android.widget.TextView[@text = 'People Names']");
-
-        System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text = 'Sample menu']")).isDisplayed());
+        //======================== Tap and Hold ========================//
+        //==============================================================//
+//        TapElementByXpath("//android.widget.TextView[@text = 'Expandable Lists']");
+//        TapElementByXpath("//android.widget.TextView[@text = '1. Custom Adapter']");
+//
+//        LongPressElementByXpath("//android.widget.TextView[@text = 'People Names']");
+//
+//        System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text = 'Sample menu']")).isDisplayed());
 
         //======================== Swipe ========================//
+        //==============================================================//
+        FindElementByUIAutomator_Click("text","Date Widgets");
+        FindElementByUIAutomator_Click("text","2. Inline");
+
+        FindElementByXpath_Click("//*[@content-desc='9']");
+
+        SwipeElementByXpath("//*[@content-desc='15']","//*[@content-desc='45']");
     }
 }

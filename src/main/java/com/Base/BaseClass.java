@@ -79,4 +79,15 @@ public class BaseClass {
         tap.longPress(LongPressOptions.longPressOptions().withElement(ElementOption
                 .element(peopleName)).withDuration(Duration.ofSeconds(3))).release().perform();
     }
+
+    public static void SwipeElementByXpath(String fromXpath, String toXpath){
+        TouchAction tap = new TouchAction<>(driver);
+
+        WebElement from = driver.findElement(By.xpath(fromXpath));
+        WebElement to = driver.findElement(By.xpath(toXpath));
+
+        tap.longPress(LongPressOptions.longPressOptions().withElement(ElementOption
+                        .element(from)).withDuration(Duration.ofSeconds(1))).moveTo(ElementOption.element(to))
+                .release().perform();
+    }
 }

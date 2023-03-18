@@ -1,29 +1,17 @@
 package com.Basic;
 
 import com.Base.BaseClass;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidKeyCode;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
-import io.appium.java_client.touch.LongPressOptions;
-import io.appium.java_client.touch.TapOptions;
-import io.appium.java_client.touch.offset.ElementOption;
-import io.appium.java_client.touch.offset.PointOption;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import java.net.MalformedURLException;
-import java.time.Duration;
-
-import static io.appium.java_client.touch.offset.ElementOption.element;
 
 public class Basic extends BaseClass{
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         Capabilities();
-        //Find_Element();
+        Find_Element();
         //UIAutomator();
         //CheckClickableObjects();
-        Gestures();
+        //Gestures();
+        //Real_Device();
     }
 
     public static void Find_Element(){
@@ -91,5 +79,20 @@ public class Basic extends BaseClass{
         System.out.println(driver.getContext());
         System.out.println(driver.getOrientation());
         System.out.println(driver.isDeviceLocked());
+    }
+
+    public static void Real_Device(){
+        //Xpath = //tagName[@attribute = 'value']
+        //Duplicate_Value = (//tagName)[2]
+
+        FindElementByXpath_Click("//android.widget.TextView[@text = 'Preference']");
+
+        FindElementByXpath_Click("//android.widget.TextView[@text = '3. Preference dependencies']");
+
+        FindElementByID_Click("android:id/checkbox");
+        FindElementByXpath_Click("//android.widget.TextView[@text = 'WiFi settings']");
+
+        FindElementByID_Details("android:id/edit","FahimWifi");
+        FindElementByXpath_Click("//android.widget.Button[@text = 'OK']");
     }
 }

@@ -4,10 +4,10 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.remote.MobilePlatform;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.ElementOption;
-import org.aspectj.weaver.ast.And;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +21,7 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.touch.offset.ElementOption.element;
+import static sun.audio.AudioDevice.device;
 
 public class BaseClass {
 
@@ -30,15 +31,28 @@ public class BaseClass {
     public static WebDriver driverW;
 
     public static AndroidDriver Capabilities() throws MalformedURLException {
+//        File folder = new File("src/main/resources","ApiDemos-debug.apk");
+//
+//        DesiredCapabilities cap = new DesiredCapabilities();
+//        cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Emulator");
+//        cap.setCapability(MobileCapabilityType.APP, folder.getAbsolutePath());
+//
+//        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+//
+//        return driver;
+
         File folder = new File("src/main/resources","ApiDemos-debug.apk");
 
         DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Emulator");
-        //cap.setCapability(MobileCapabilityType.AUTOMATION_NAME,"uiautomator2");
-        cap.setCapability(MobileCapabilityType.APP, folder.getAbsolutePath());
 
-        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
-
+        if(device.equals("real")) {
+            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Device");
+        }
+        else {
+            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Emulator");
+            cap.setCapability(MobileCapabilityType.APP, folder.getAbsolutePath());
+            driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+        }
         return driver;
     }
 

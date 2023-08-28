@@ -1,16 +1,16 @@
 package com.Base;
 
+import com.utils.ConfigLoader;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
-import io.appium.java_client.remote.MobilePlatform;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -18,47 +18,55 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.touch.offset.ElementOption.element;
-import static sun.audio.AudioDevice.device;
 
 public class BaseClass {
 
-    public static void main(String[] args) throws MalformedURLException,InterruptedException {}
+    public static void main(String[] args) throws MalformedURLException,InterruptedException{}
 
     public static AndroidDriver<AndroidElement> driver;
-    public static WebDriver driverW;
 
-    public static AndroidDriver Capabilities() throws MalformedURLException {
-//        File folder = new File("src/main/resources","ApiDemos-debug.apk");
-//
-//        DesiredCapabilities cap = new DesiredCapabilities();
-//        cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Emulator");
-//        cap.setCapability(MobileCapabilityType.APP, folder.getAbsolutePath());
-//
-//        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
-//
-//        return driver;
+    public static AndroidDriver Capabilities(String device) throws MalformedURLException {
+        String appName = new ConfigLoader().initializeProperty().getProperty("GeneralStoreApp");
 
-        File folder = new File("src/main/resources","ApiDemos-debug.apk");
+        File folder = new File("src/main/resources", appName);
 
         DesiredCapabilities cap = new DesiredCapabilities();
 
         if(device.equals("real")) {
             cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Device");
+            System.out.println("Android");
         }
-        else {
+        else if(device.equals("emulator")){
             cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Emulator");
-            cap.setCapability(MobileCapabilityType.APP, folder.getAbsolutePath());
+            System.out.println("Emulator");
+        }
+
+        cap.setCapability(MobileCapabilityType.APP, folder.getAbsolutePath());
+        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+
+        return driver;
+    }
+
+    public static AndroidDriver Browser_Capabilities() {
+        try{
+            DesiredCapabilities cap = new DesiredCapabilities();
+
+            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Device");
+
+            cap.setCapability(MobileCapabilityType.BROWSER_NAME,"Chrome");
+            cap.setCapability(AndroidMobileCapabilityType.CHROMEDRIVER_EXECUTABLE, "C:\\Users\\Mustafizur Rahman\\Downloads\\chromedriver-win32\\chromedriver.exe");
+
             driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+        }
+        catch (Exception exception){
+            System.out.println(exception.getMessage());
         }
         return driver;
     }
 
-    public static void SmallWait() throws InterruptedException {Thread.sleep(2000);}
-    public static void LongWait() throws InterruptedException {Thread.sleep(4000);}
-    public static void ImplicitWait() {driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);}
+    public static void SmallWait(int sec) throws InterruptedException {Thread.sleep(sec);}
 
     //=====================================================================================================//
     public static void FindElementByXpath(String xpath){driver.findElement(By.xpath(xpath));}
@@ -86,6 +94,13 @@ public class BaseClass {
         TouchAction tap = new TouchAction<>(driver);
 
         WebElement element = driver.findElement(By.xpath(xpath));
+        tap.tap(new TapOptions().withElement(ElementOption.element(element))).perform();
+    }
+
+    public static void TapElementById(String id){
+        TouchAction tap = new TouchAction<>(driver);
+
+        WebElement element = driver.findElement(By.id(id));
         tap.tap(new TapOptions().withElement(ElementOption.element(element))).perform();
     }
 
@@ -119,14 +134,14 @@ public class BaseClass {
 
     //=====================================================================================================//
     public static void Scroll_Down_Xpath_FindElement(String xpath) throws InterruptedException {
-        SmallWait();
+        SmallWait(1500);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement element = driver.findElement(By.xpath(xpath));
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
     public static void Scroll_Down() throws InterruptedException {
-        SmallWait();
+        SmallWait(1500);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,100)", "");
     }
@@ -135,4 +150,14 @@ public class BaseClass {
         driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+text+"\"));");
     }
     //=====================================================================================================//
+    public static void Select_Scroll_Down(String id, String text, String attribute) {
+        TouchAction tap = new TouchAction<>(driver);
+
+        WebElement element = driver.findElement(By.id(id));
+        tap.tap(new TapOptions().withElement(ElementOption.element(element))).perform();
+
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+text+"\"));");
+
+        driver.findElementByAndroidUIAutomator(""+attribute+"(\""+text+"\")").click();
+    }
 }

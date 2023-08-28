@@ -1,22 +1,26 @@
 package com.Basic;
 
 import com.Base.BaseClass;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+import org.openqa.selenium.By;
 
 import java.net.MalformedURLException;
 
 public class Basic extends BaseClass{
-    public static void main(String[] args) throws MalformedURLException, InterruptedException {
-        Capabilities();
-        Find_Element();
+    public static void main(String[] args) throws MalformedURLException {
+        //Capabilities("real");
+        //Browser_Capabilities();
+        //Find_Element();
         //UIAutomator();
         //CheckClickableObjects();
         //Gestures();
-        //Real_Device();
+        //Mobile_Browser();
     }
 
     public static void Find_Element(){
         //Xpath = //tagName[@attribute = 'value']
-        //Duplicate_Value = (//tagName)[2]
+        //Duplicate_Value = (//tagName)[2]               //class name is the tag name
 
         FindElementByXpath_Click("//android.widget.TextView[@text = 'Preference']");
 
@@ -56,6 +60,7 @@ public class Basic extends BaseClass{
 
         //======================== Swipe ========================//
         //======================================================//
+//        SmallWait(1000);
 //        FindElementByUIAutomator_Click("text","Date Widgets");
 //        FindElementByUIAutomator_Click("text","2. Inline");
 //
@@ -70,29 +75,15 @@ public class Basic extends BaseClass{
 
         //======================== Drag and Drop =================//
         //=======================================================//
-//        FindElementByUIAutomator_Click("text","Drag and Drop");
-//        Drag_DropElementByXpath("(.//*[@class='android.view.View'])[1]","(.//*[@class='android.view.View'])[2]");
+        SmallWait(1000);
+        FindElementByUIAutomator_Click("text","Drag and Drop");
+        Drag_DropElementByXpath("(.//*[@class='android.view.View'])[1]","(.//*[@class='android.view.View'])[2]");
 
         //======================== Miscelleanous  ================//
         //=======================================================//
-        System.out.println(driver.currentActivity());
-        System.out.println(driver.getContext());
-        System.out.println(driver.getOrientation());
-        System.out.println(driver.isDeviceLocked());
-    }
-
-    public static void Real_Device(){
-        //Xpath = //tagName[@attribute = 'value']
-        //Duplicate_Value = (//tagName)[2]
-
-        FindElementByXpath_Click("//android.widget.TextView[@text = 'Preference']");
-
-        FindElementByXpath_Click("//android.widget.TextView[@text = '3. Preference dependencies']");
-
-        FindElementByID_Click("android:id/checkbox");
-        FindElementByXpath_Click("//android.widget.TextView[@text = 'WiFi settings']");
-
-        FindElementByID_Details("android:id/edit","FahimWifi");
-        FindElementByXpath_Click("//android.widget.Button[@text = 'OK']");
+//        System.out.println(driver.currentActivity());
+//        System.out.println(driver.getContext());
+//        System.out.println(driver.getOrientation());
+//        System.out.println(driver.isDeviceLocked());
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+
+    <test verbose="2" preserve-order="true" name="tests">
+        <classes>
+            <class name="tests.General_Store">
+                <methods>
+                    <include name="fill_up_initial_info"/>
+                    <exclude name="get_error_message"/>
+                    <exclude name="find_and_add_product_on_the_cart"/>
+                    <exclude name="validate_mobile_gesture"/>
+                    <exclude name="hybrid_app_context"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

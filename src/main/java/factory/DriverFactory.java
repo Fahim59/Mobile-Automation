@@ -11,12 +11,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverFactory {
-    public static AndroidDriver<AndroidElement> driver;
+    protected static AndroidDriver<AndroidElement> driver;
 
-    public static AndroidDriver initializeDriver(String device) throws MalformedURLException {
-        String appName = new ConfigLoader().initializeProperty().getProperty("GeneralStoreApp");
+    public static AndroidDriver initializeDriver() throws MalformedURLException {
+        String appName = new ConfigLoader().initializeProperty().getProperty("Application");
+        String device = new ConfigLoader().initializeProperty().getProperty("Device");
 
-        File folder = new File("src/main/resources", appName);
+        File folder = new File("src/test/resources", appName);
 
         DesiredCapabilities cap = new DesiredCapabilities();
 
@@ -32,6 +33,10 @@ public class DriverFactory {
         cap.setCapability(MobileCapabilityType.APP, folder.getAbsolutePath());
         driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
 
+        return driver;
+    }
+
+    public static AndroidDriver getDriver() {
         return driver;
     }
 }

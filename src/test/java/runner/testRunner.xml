@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="All Test Suite" parallel="false">
 
     <test verbose="2" preserve-order="true" name="tests">
         <classes>
-            <class name="tests.General_Store">
+            <class name="tests.LoginTest">
                 <methods>
-                    <include name="fill_up_initial_info"/>
-                    <exclude name="get_error_message"/>
-                    <exclude name="find_and_add_product_on_the_cart"/>
-                    <exclude name="validate_mobile_gesture"/>
-                    <exclude name="hybrid_app_context"/>
+                    <include name="login_with_valid_credentials"/>
+                    <exclude name="login_with_invalid_username"/>
+                    <exclude name="login_with_invalid_password"/>
                 </methods>
             </class>
         </classes>

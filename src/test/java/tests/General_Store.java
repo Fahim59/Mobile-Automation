@@ -1,32 +1,71 @@
 package tests;
 
-import hooks.MyHooks;
+import base.BaseClass;
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 import org.testng.annotations.Test;
 
-public class General_Store extends MyHooks {
+public class General_Store extends BaseClass {
 
     @Test
-    public void fill_up_initial_info() {
-        System.out.println("Test 1");
+    public void login_with_valid_credentials() throws InterruptedException {
+        Thread.sleep(2000);
+        MobileElement menuBtn = driver.findElement(MobileBy.xpath("//*[@content-desc='open menu']"));
+        menuBtn.click();
+
+        Thread.sleep(2000);
+        MobileElement loginMenuBtn = driver.findElement(MobileBy.xpath("//android.widget.TextView[@text = 'Log In']"));
+        loginMenuBtn.click();
+
+        Thread.sleep(2000);
+        MobileElement userNameField = driver.findElement(MobileBy.xpath("//*[@content-desc='Username input field']"));
+        MobileElement passwordField = driver.findElement(MobileBy.xpath("//*[@content-desc='Password input field']"));
+        MobileElement loginBtn = driver.findElement(MobileBy.xpath("//*[@content-desc='Login button']"));
+
+        userNameField.sendKeys("bob@example.com");
+        passwordField.sendKeys("10203040");
+        loginBtn.click();
+
+        Thread.sleep(2000);
+        menuBtn.click();
+
+        Thread.sleep(2000);
+        MobileElement logoutMenuBtn = driver.findElement(MobileBy.xpath("//android.widget.TextView[@text = 'Log Out']"));
+        logoutMenuBtn.click();
+
+        Thread.sleep(2000);
+        MobileElement logoutConfirmBtn = driver.findElement(MobileBy.id("android:id/button1"));
+        logoutConfirmBtn.click();
+
+        Thread.sleep(2000);
+        MobileElement okBtn = driver.findElement(MobileBy.id("android:id/button1"));
+        okBtn.click();
     }
 
     @Test
-    public void get_error_message() {
-        System.out.println("Test 2");
+    public void login_with_invalid_username() throws InterruptedException {
+        Thread.sleep(2000);
+        MobileElement userNameField = driver.findElement(MobileBy.xpath("//*[@content-desc='Username input field']"));
+        MobileElement passwordField = driver.findElement(MobileBy.xpath("//*[@content-desc='Password input field']"));
+        MobileElement loginBtn = driver.findElement(MobileBy.xpath("//*[@content-desc='Login button']"));
+
+        userNameField.sendKeys("user");
+        passwordField.sendKeys("10203040");
+        loginBtn.click();
+
+        userNameField.clear();
+        passwordField.clear();
     }
 
     @Test
-    public void find_and_add_product_on_the_cart() {
-        System.out.println("Test 3");
-    }
+    public void login_with_invalid_password() throws InterruptedException {
+        Thread.sleep(2000);
+        MobileElement userNameField = driver.findElement(MobileBy.xpath("//*[@content-desc='Username input field']"));
+        MobileElement passwordField = driver.findElement(MobileBy.xpath("//*[@content-desc='Password input field']"));
+        MobileElement loginBtn = driver.findElement(MobileBy.xpath("//*[@content-desc='Login button']"));
 
-    @Test
-    public void validate_mobile_gesture() {
-        System.out.println("Test 4");
-    }
-
-    @Test
-    public void hybrid_app_context() {
-        System.out.println("Test 5");
+        userNameField.sendKeys("bob@example.com");
+        passwordField.sendKeys("password");
+        loginBtn.click();
     }
 }

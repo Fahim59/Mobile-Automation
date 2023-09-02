@@ -13,6 +13,8 @@ public class HomePage extends BaseClass {
     @AndroidFindBy(id = "android:id/button1") private MobileElement logoutConfirmBtn;
     @AndroidFindBy(id = "android:id/button1") private MobileElement okBtn;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Provided credentials do not match any user in this service.']") private MobileElement message;
+
     public HomePage clickMenuButton(){
         click_Element(menuBtn);
         return this;
@@ -40,5 +42,9 @@ public class HomePage extends BaseClass {
 
     public HomePage logout(){
         return clickMenuButton().clickLogoutMenuButton().clickLogoutConfirmButton().clickOkButton();
+    }
+
+    public String getErrorMessage(){
+        return getText(message);
     }
 }

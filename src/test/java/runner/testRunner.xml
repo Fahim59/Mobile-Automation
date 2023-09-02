@@ -9,8 +9,8 @@
             <class name="tests.LoginTest">
                 <methods>
                     <include name="login_with_valid_credentials"/>
-                    <exclude name="login_with_invalid_username"/>
-                    <exclude name="login_with_invalid_password"/>
+                    <include name="login_with_invalid_username"/>
+                    <include name="login_with_invalid_password"/>
                 </methods>
             </class>
         </classes>

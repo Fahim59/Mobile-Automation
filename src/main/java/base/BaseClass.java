@@ -50,6 +50,11 @@ public class BaseClass {
         element.click();
     }
 
+    public String getText(MobileElement element) {
+        wait_for_visibility(element);
+        return element.getAttribute("text");
+    }
+
     @AfterTest()
     public void quit_driver() {
         driver.quit();

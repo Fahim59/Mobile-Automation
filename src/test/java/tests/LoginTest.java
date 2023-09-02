@@ -2,8 +2,7 @@ package tests;
 
 import base.BaseClass;
 import org.testng.annotations.*;
-import pages.HomePage;
-import pages.LoginPage;
+import pages.*;
 
 public class LoginTest extends BaseClass {
     private LoginPage loginPage;
@@ -16,13 +15,11 @@ public class LoginTest extends BaseClass {
     }
 
     @Test
-    public void login_with_valid_credentials() throws InterruptedException {
+    public void login_with_valid_credentials() {
         homePage.clickMenuButton();
         homePage.clickLoginMenuButton();
 
         loginPage.login("bob@example.com","10203040");
-
-        small_wait(2000);
 
         homePage.logout();
     }

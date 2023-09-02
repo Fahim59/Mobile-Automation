@@ -52,6 +52,13 @@ public class BaseClass {
 
     @AfterTest()
     public void quit_driver() {
-        //driver.quit();
+        driver.quit();
+
+        try {
+            Runtime.getRuntime().exec("adb emu kill");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

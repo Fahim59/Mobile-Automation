@@ -16,27 +16,29 @@ public class DriverFactory {
     public static AndroidDriver initializeDriver() throws MalformedURLException {
         String appName = new ConfigLoader().initializeProperty().getProperty("Application");
         String device = new ConfigLoader().initializeProperty().getProperty("Device");
-
         File folder = new File("src/test/resources", appName);
 
-        DesiredCapabilities cap = new DesiredCapabilities();
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 
         if(device.equals("real")) {
-            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Device");
+            caps.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Device");
+            //caps.setCapability(MobileCapabilityType.UDID, "");
             System.out.println("Android");
         }
         else if(device.equals("emulator")){
-            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Emulator");
+            caps.setCapability(MobileCapabilityType.DEVICE_NAME, "Emulator");
+            caps.setCapability(MobileCapabilityType.UDID, "emulator-5554");
+            caps.setCapability("avd", "Emulator");
+            caps.setCapability("avdLaunchTimeout", 180000);
             System.out.println("Emulator");
         }
 
-        cap.setCapability(MobileCapabilityType.APP, folder.getAbsolutePath());
-        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+        caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+        caps.setCapability(MobileCapabilityType.APP, folder.getAbsolutePath());
 
-        return driver;
-    }
+        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
 
-    public static AndroidDriver getDriver() {
         return driver;
     }
 }

@@ -9,8 +9,13 @@
             <class name="tests.LoginTest">
                 <methods>
                     <include name="login_with_valid_credentials"/>
-                    <include name="login_with_invalid_username"/>
-                    <include name="login_with_invalid_password"/>
+                    <exclude name="login_with_invalid_username"/>
+                    <exclude name="login_with_invalid_password"/>
+                </methods>
+            </class>
+            <class name="tests.ProductTest">
+                <methods>
+                    <include name="validate_product_on_products_page"/>
                 </methods>
             </class>
         </classes>

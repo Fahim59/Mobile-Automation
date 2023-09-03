@@ -15,6 +15,11 @@ public class HomePage extends BaseClass {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Provided credentials do not match any user in this service.']") private MobileElement message;
 
+    @AndroidFindBy(xpath = "//*[@content-desc='cart badge']") private MobileElement cartBtn;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Sauce Labs Backpack']") private MobileElement slbTitle;
+    @AndroidFindBy(xpath = "//*[@content-desc = 'store item price'][1]") private MobileElement slbPrice;
+
     public HomePage clickMenuButton(){
         click_Element(menuBtn);
         return this;
@@ -46,5 +51,23 @@ public class HomePage extends BaseClass {
 
     public String getErrorMessage(){
         return getText(message);
+    }
+
+    public HomePage clickCartButton(){
+        click_Element(cartBtn);
+        return this;
+    }
+
+    public HomePage clickSLBTitle(){
+        click_Element(slbTitle);
+        return this;
+    }
+
+    public String getSLBTitle(){
+        return getText(slbTitle);
+    }
+
+    public String getSLBPrice(){
+        return getText(slbPrice);
     }
 }

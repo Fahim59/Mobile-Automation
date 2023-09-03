@@ -8,7 +8,6 @@ import org.testng.annotations.*;
 import pages.*;
 import utils.ConfigLoader;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 public class LoginTest extends BaseClass {
@@ -55,8 +54,8 @@ public class LoginTest extends BaseClass {
         loginPage.login(loginDetails.getJSONObject("validCredential").getString("username"),
                 loginDetails.getJSONObject("validCredential").getString("password"));
 
-        small_wait(1000);
-        homePage.logout();
+        //small_wait(1000);
+        //homePage.logout();
     }
 
     @Test

@@ -20,7 +20,7 @@ public class LoginTest extends BaseClass {
     String errMessage;
 
     @BeforeClass
-    public void beforeClass() throws IOException {
+    public void beforeClass() throws Exception {
         try{
             errMessage = new ConfigLoader().parseStringXML().get("invalid_credential");
 
@@ -32,6 +32,7 @@ public class LoginTest extends BaseClass {
         }
         catch (Exception e){
             e.printStackTrace();
+            throw e;
         }
         finally {
             if(data != null){
@@ -60,11 +61,8 @@ public class LoginTest extends BaseClass {
 
     @Test
     public void login_with_invalid_username() {
-
         loginPage.login(loginDetails.getJSONObject("invalidUsername").getString("username"),
                 loginDetails.getJSONObject("invalidUsername").getString("password"));
-
-        System.out.println();
 
         Assert.assertEquals(errMessage, String.valueOf(homePage.getErrorMessage()));
 
@@ -73,8 +71,6 @@ public class LoginTest extends BaseClass {
 
     @Test
     public void login_with_invalid_password() throws Exception {
-
-
         loginPage.login(loginDetails.getJSONObject("invalidPassword").getString("username"),
                 loginDetails.getJSONObject("invalidPassword").getString("password"));
 

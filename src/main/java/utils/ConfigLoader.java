@@ -19,7 +19,7 @@ public class ConfigLoader {
     public Properties initializeProperty() {
         properties = new Properties();
         try {
-            FileInputStream ip = new FileInputStream("src/main/resources/config.properties");
+            FileInputStream ip = new FileInputStream("src/test/resources/config.properties");
             properties.load(ip);
 
         }

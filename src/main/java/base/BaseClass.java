@@ -9,8 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
-import java.net.MalformedURLException;
-
 public class BaseClass {
     protected static AppiumDriver<MobileElement> driver;
 
@@ -19,7 +17,7 @@ public class BaseClass {
     }
 
     @BeforeTest()
-    public void initialize_driver() throws MalformedURLException {
+    public void initialize_driver() throws Exception {
         driver = DriverFactory.initializeDriver();
     }
 

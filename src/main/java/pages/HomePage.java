@@ -20,6 +20,8 @@ public class HomePage extends BaseClass {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Sauce Labs Backpack']") private MobileElement slbTitle;
     @AndroidFindBy(xpath = "//*[@content-desc = 'store item price'][1]") private MobileElement slbPrice;
 
+    @AndroidFindBy(xpath = "//*[@content-desc = 'store item text'][1]") private MobileElement title;
+
     public HomePage clickMenuButton(){
         click_Element(menuBtn);
         return this;
@@ -59,7 +61,7 @@ public class HomePage extends BaseClass {
     }
 
     public HomePage clickSLBTitle(){
-        click_Element(slbTitle);
+        click_Element(title);
         return this;
     }
 

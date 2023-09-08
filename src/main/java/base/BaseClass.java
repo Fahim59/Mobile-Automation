@@ -1,7 +1,6 @@
 package base;
 
 import factory.DriverFactory;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -10,6 +9,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BaseClass {
     //protected static AppiumDriver<MobileElement> driver;
@@ -22,6 +25,10 @@ public class BaseClass {
     @BeforeTest()
     public void initialize_driver() throws Exception {
         driver = DriverFactory.initializeDriver();
+    }
+
+    public AndroidDriver getDriver(){
+        return driver;
     }
 
     public void small_wait(int msec) throws InterruptedException {
@@ -56,12 +63,22 @@ public class BaseClass {
         return element.getAttribute("text");
     }
 
+    public static void Scroll_Down_Text_FindElement(String text) {
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+text+"\"));");
+    }
+
+    public String dateTime() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
     @AfterTest()
     public void quit_driver() {
-        driver.quit();
+        //driver.quit();
 
         try {
-            Runtime.getRuntime().exec("adb emu kill");
+            //Runtime.getRuntime().exec("adb emu kill");
         }
         catch (Exception e) {
             e.printStackTrace();

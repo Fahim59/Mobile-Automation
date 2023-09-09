@@ -31,6 +31,8 @@ public class DriverFactory {
             caps.setCapability(MobileCapabilityType.PLATFORM_NAME, platform);
             caps.setCapability(MobileCapabilityType.DEVICE_NAME, device);
 
+            caps.setCapability("videoRecordingEnabled", true);
+
             switch (platform){
                 case "Android":
                     caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");

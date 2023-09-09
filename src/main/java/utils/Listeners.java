@@ -1,6 +1,7 @@
 package utils;
 
 import base.BaseClass;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.testng.ITestListener;
@@ -24,6 +25,8 @@ public class Listeners implements ITestListener {
             System.out.println(sw);
         }
 
+                           // ---------------- Screenshot ---------------- //
+
         File file = baseClass.getDriver().getScreenshotAs(OutputType.FILE);
 
         String imagePath = "Screenshots" + File.separator + new ConfigLoader().initializeProperty().getProperty("Platform")
@@ -31,12 +34,15 @@ public class Listeners implements ITestListener {
                 + result.getTestClass().getRealClass().getSimpleName() + File.separator + result.getName() + ".png";
 
         String completeImagePath = System.getProperty("user.dir") + File.separator + imagePath;
-        System.out.println(completeImagePath);
 
         try {
-            FileUtils.copyFile(file, new File(imagePath));
+            FileUtils.copyFile(file, new File(completeImagePath));
             Reporter.log("This is the "+result.getName()+"'s failed screenshot");
-            Reporter.log("<a href='"+ completeImagePath + "'> <img src='"+ completeImagePath + "' height='400' width='400'/> </a>");
+
+            byte[] screenshotBytes = FileUtils.readFileToByteArray(new File(completeImagePath));
+            String screenshotBase64 = Base64.encodeBase64String(screenshotBytes);
+
+            Reporter.log("<a href='" + completeImagePath + "'> <img src='data:image/png;base64," + screenshotBase64 + "' height='250' width='250'/> </a>");
         }
         catch (IOException e) {
             e.printStackTrace();

@@ -1,16 +1,10 @@
 package tests;
 
 import base.BaseClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-import pages.CartPage;
-import pages.HomePage;
-import pages.ProductPage;
+import pages.*;
 import utils.ConfigLoader;
-
-import java.util.regex.Pattern;
 
 public class CartTest extends BaseClass {
     private ProductPage productPage;

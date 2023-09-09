@@ -1,0 +1,2 @@
+2023-09-09 21:39:48.958 [main] INFO  base.BaseClass - initialize_driver
+2023-09-09 21:39:56.087 [main] INFO  base.BaseClass - login_with_valid_credentials

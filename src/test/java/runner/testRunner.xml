@@ -4,7 +4,7 @@
 <listeners>
     <listener class-name="utils.Listeners"/>
 </listeners>
-    <test verbose="2" preserve-order="true" name="tests">
+    <test verbose="2" preserve-order="true" name="Emulator">
         <classes>
             <class name="tests.LoginTest">
                 <methods>
@@ -27,4 +27,14 @@
             </class>
         </classes>
     </test>
+
+<!--    <test verbose="2" preserve-order="true" name="Real Device">-->
+<!--        <classes>-->
+<!--            <class name="tests.LoginTest">-->
+<!--                <methods>-->
+<!--                    <include name="login_with_invalid_username"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

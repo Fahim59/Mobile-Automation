@@ -4,6 +4,7 @@ import base.BaseClass;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
+import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -16,6 +17,16 @@ import java.io.StringWriter;
 public class Listeners implements ITestListener {
     BaseClass baseClass = new BaseClass();
 
+    @Override
+    public void onTestStart(ITestResult iTestResult) {
+
+    }
+
+    @Override
+    public void onTestSuccess(ITestResult iTestResult) {
+
+    }
+
     public void onTestFailure(ITestResult result) {
         if(result.getThrowable() != null) {
             StringWriter sw = new StringWriter();
@@ -24,7 +35,6 @@ public class Listeners implements ITestListener {
 
             System.out.println(sw);
         }
-
                            // ---------------- Screenshot ---------------- //
 
         File file = baseClass.getDriver().getScreenshotAs(OutputType.FILE);
@@ -47,5 +57,25 @@ public class Listeners implements ITestListener {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onTestSkipped(ITestResult iTestResult) {
+
+    }
+
+    @Override
+    public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
+
+    }
+
+    @Override
+    public void onStart(ITestContext iTestContext) {
+
+    }
+
+    @Override
+    public void onFinish(ITestContext iTestContext) {
+
     }
 }

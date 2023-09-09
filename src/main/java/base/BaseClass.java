@@ -6,6 +6,9 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,6 +25,8 @@ import java.util.Date;
 public class BaseClass {
     protected static AndroidDriver<AndroidElement> driver;
 
+    private static final Logger logger = LogManager.getLogger(BaseClass.class);
+
     public BaseClass(){
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
@@ -29,6 +34,8 @@ public class BaseClass {
     @BeforeTest()
     public void initialize_driver() throws Exception {
         driver = DriverFactory.initializeDriver();
+
+        logger.info("initialize_driver");
     }
 
     @BeforeMethod
@@ -37,7 +44,7 @@ public class BaseClass {
     }
 
     @AfterMethod
-    public void afterMethod(ITestResult result) {
+    public synchronized void afterMethod(ITestResult result) {
         String media = getDriver().stopRecordingScreen();
 
         if(result.getStatus() == 2){
@@ -46,7 +53,10 @@ public class BaseClass {
                     + result.getTestClass().getRealClass().getSimpleName();
 
             File videoDir = new File(videoPath);
-            if(!videoDir.exists()) { videoDir.mkdirs(); }
+            //if(!videoDir.exists()) { videoDir.mkdirs(); }
+            synchronized(videoDir){
+                if(!videoDir.exists()) { videoDir.mkdirs(); }
+            }
 
             try {
                 FileOutputStream stream = new FileOutputStream(videoDir + File.separator + result.getName() + ".mp4");
@@ -108,13 +118,18 @@ public class BaseClass {
 
     @AfterTest()
     public void quit_driver() {
-        //driver.quit();
-
         try {
+            //driver.quit();
             //Runtime.getRuntime().exec("adb emu kill");
+
+            File logFile = new File("Log Result/test.log");
+            File outputFile = new File("Log Result/test_output.txt");
+
+            String logContents = FileUtils.readFileToString(logFile, "UTF-8");
+            FileUtils.writeStringToFile(outputFile, logContents, "UTF-8");
         }
         catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Log save failed" +e);
         }
     }
 }

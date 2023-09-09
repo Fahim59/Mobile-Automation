@@ -1,7 +1,6 @@
 package factory;
 
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import utils.ConfigLoader;
@@ -10,7 +9,9 @@ import java.io.File;
 import java.net.URL;
 
 public class DriverFactory {
-    protected static AndroidDriver<AndroidElement> driver;
+    //protected static AndroidDriver<AndroidElement> driver;
+    protected static ThreadLocal <AndroidDriver> driver = new ThreadLocal<>();
+
 
     public static AndroidDriver initializeDriver() throws Exception {
         try{
@@ -30,8 +31,6 @@ public class DriverFactory {
 
             caps.setCapability(MobileCapabilityType.PLATFORM_NAME, platform);
             caps.setCapability(MobileCapabilityType.DEVICE_NAME, device);
-
-            caps.setCapability("videoRecordingEnabled", true);
 
             switch (platform){
                 case "Android":
@@ -61,13 +60,14 @@ public class DriverFactory {
                     throw new Exception("Invalid Platform Name " +platform);
             }
 
-            driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+            //driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+            driver.set(new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps));
         }
         catch (Exception e){
             e.printStackTrace();
             throw e;
         }
 
-        return driver;
+        return driver.get();
     }
 }

@@ -1,6 +1,8 @@
 package utils;
 
 import base.BaseClass;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -13,18 +15,22 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
+import java.security.IdentityScope;
 
 public class Listeners implements ITestListener {
     BaseClass baseClass = new BaseClass();
 
     @Override
-    public void onTestStart(ITestResult iTestResult) {
-
+    public void onTestStart(ITestResult result) {
+        Extent_Report.startTest(result.getName(), result.getMethod().getDescription())
+                .assignCategory(new ConfigLoader().initializeProperty().getProperty("Platform") + "_" + new ConfigLoader().initializeProperty().getProperty("Device"))
+                .assignAuthor("Mustafizur Rahman");
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-
+        Extent_Report.getTest().log(Status.PASS, "Test Passed");
     }
 
     public void onTestFailure(ITestResult result) {
@@ -38,6 +44,14 @@ public class Listeners implements ITestListener {
                            // ---------------- Screenshot ---------------- //
 
         File file = baseClass.getDriver().getScreenshotAs(OutputType.FILE);
+
+        byte[] encoded = null;
+        try {
+            encoded = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
+        }
+        catch (IOException e1) {
+            e1.printStackTrace();
+        }
 
         String imagePath = "Screenshots" + File.separator + new ConfigLoader().initializeProperty().getProperty("Platform")
                 + "_" + new ConfigLoader().initializeProperty().getProperty("Device") + File.separator + baseClass.dateTime() + File.separator
@@ -57,11 +71,14 @@ public class Listeners implements ITestListener {
         catch (IOException e) {
             e.printStackTrace();
         }
+
+        Extent_Report.getTest().fail("Test Failed",
+                MediaEntityBuilder.createScreenCaptureFromBase64String(new String(encoded, StandardCharsets.US_ASCII)).build());
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-
+        Extent_Report.getTest().log(Status.SKIP, "Test Skipped");
     }
 
     @Override
@@ -76,6 +93,6 @@ public class Listeners implements ITestListener {
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-
+        Extent_Report.getReporter().flush();
     }
 }

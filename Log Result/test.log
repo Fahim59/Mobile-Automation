@@ -1,13 +1,33 @@
-2023-09-09 21:39:48.958 [main] INFO  base.BaseClass - initialize_driver
-2023-09-09 21:39:56.087 [main] INFO  base.BaseClass - login_with_valid_credentials
-2023-09-09 23:26:03.144 [main] INFO  base.BaseClass - initialize_driver
-2023-09-09 23:27:28.290 [main] INFO  base.BaseClass - Appium server started
-2023-09-09 23:27:43.156 [main] INFO  base.BaseClass - initialize_driver
-2023-09-09 23:30:07.727 [main] INFO  base.BaseClass - Appium server started
-2023-09-09 23:30:21.774 [main] INFO  base.BaseClass - initialize_driver
-2023-09-09 23:30:31.744 [main] INFO  base.BaseClass - login_with_valid_credentials
-2023-09-09 23:30:45.284 [main] INFO  base.BaseClass - Appium server stopped
-2023-09-09 23:31:42.600 [main] INFO  base.BaseClass - Appium server started
-2023-09-09 23:31:59.304 [main] INFO  base.BaseClass - initialize_driver
-2023-09-09 23:32:09.700 [main] INFO  base.BaseClass - login_with_valid_credentials
-2023-09-09 23:32:21.200 [main] INFO  base.BaseClass - Appium server stopped
+2023-09-10 12:17:14.403 [main] INFO  base.BaseClass - Appium server started
+2023-09-10 12:17:49.217 [main] INFO  base.BaseClass - initialize_driver
+2023-09-10 12:18:00.168 [main] INFO  base.BaseClass - login_with_valid_credentials
+2023-09-10 12:18:14.332 [main] INFO  base.BaseClass - Appium server stopped
+2023-09-10 12:28:20.386 [main] INFO  base.BaseClass - Appium server started
+2023-09-10 12:28:40.832 [main] INFO  base.BaseClass - initialize_driver
+2023-09-10 12:28:50.341 [main] INFO  base.BaseClass - login_with_valid_credentials
+2023-09-10 12:29:03.121 [main] INFO  base.BaseClass - Appium server stopped
+2023-09-10 12:39:19.726 [main] INFO  base.BaseClass - Appium server started
+2023-09-10 12:39:32.921 [main] INFO  base.BaseClass - Appium server already running
+2023-09-10 12:46:54.502 [main] INFO  base.BaseClass - Appium server already running
+2023-09-10 12:52:22.466 [main] INFO  base.BaseClass - Appium server already running
+2023-09-10 12:56:28.361 [main] INFO  base.BaseClass - Appium server already running
+2023-09-10 12:56:53.136 [main] INFO  base.BaseClass - Appium server started
+2023-09-10 12:57:10.072 [main] INFO  base.BaseClass - initialize_driver
+2023-09-10 12:57:19.389 [main] INFO  base.BaseClass - login_with_valid_credentials
+2023-09-10 12:57:30.145 [main] INFO  base.BaseClass - Appium server stopped
+2023-09-10 13:13:19.772 [main] INFO  base.BaseClass - Appium server started
+2023-09-10 13:13:37.996 [main] INFO  base.BaseClass - initialize_driver
+2023-09-10 13:13:48.592 [main] INFO  base.BaseClass - login_with_valid_credentials
+2023-09-10 13:14:01.713 [main] INFO  base.BaseClass - Appium server stopped
+2023-09-10 14:15:50.393 [main] INFO  base.BaseClass - Appium server started
+2023-09-10 14:16:07.996 [main] INFO  base.BaseClass - initialize_driver
+2023-09-10 14:16:18.630 [main] INFO  base.BaseClass - login_with_valid_credentials
+2023-09-10 14:16:33.314 [main] INFO  base.BaseClass - Appium server stopped
+2023-09-10 14:22:41.682 [main] INFO  base.BaseClass - Appium server started
+2023-09-10 14:22:53.210 [main] INFO  base.BaseClass - initialize_driver
+2023-09-10 14:23:02.879 [main] INFO  base.BaseClass - login_with_valid_credentials
+2023-09-10 14:23:17.155 [main] INFO  base.BaseClass - Appium server stopped
+2023-09-10 14:25:55.249 [main] INFO  base.BaseClass - Appium server started
+2023-09-10 14:26:11.184 [main] INFO  base.BaseClass - initialize_driver
+2023-09-10 14:26:24.411 [main] INFO  base.BaseClass - login_with_valid_credentials
+2023-09-10 14:26:42.807 [main] INFO  base.BaseClass - Appium server stopped
